@@ -1,6 +1,4 @@
 <?php
-
-
 require_once "bootstrap.php";
 require_once 'src/Entities/Inhalt.php';
 require_once 'src/Entities/Anmerkungen.php';

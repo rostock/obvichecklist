@@ -1,3 +1,4 @@
 /nbproject
 /vendor
 /lib
+/conf/db.sqlite
