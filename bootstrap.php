@@ -20,6 +20,8 @@ $conn = array(
   'path' => __DIR__ . '/conf/db.sqlite',
 );
 
+
+$testVari = "Boxershorts";
 // obtaining the entity manager
 $entityManager = EntityManager::create($conn, $config);
 

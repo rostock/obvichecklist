@@ -40,7 +40,8 @@ foreach($fields as $item) {
   if($item[6] === "Ja") {
     $comment = TRUE;
   } 
-  $element = new Fields($item[0], $item[1], $item[2], $item[3], $item[4], $item[5], $comment, $item[7], $item[8]);
+  $element = new Fields();
+  $element->setParameter($item[0], $item[1], $item[2], $item[3], $item[4], $item[5], $comment, $item[7], $item[8]);
   $entityManager->persist($element);
   $entityManager->flush();
 }

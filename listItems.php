@@ -141,7 +141,7 @@ require_once 'src/Entities/Metadata.php';
                 $queryBuilder = $entityManager->createQueryBuilder();
                 $queryBuilder->select('u.value')
                   ->from('Sources\Entities\Listelement',' u')
-                  ->where('u.elementId = :id')
+                  ->where('u.id = :id')
                   ->setParameter('id', $id);
 
                 $res = $queryBuilder->getQuery()->getResult();

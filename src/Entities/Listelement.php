@@ -14,7 +14,7 @@ class Listelement {
    *  @ORM\Column (type="integer") 
    *  @ORM\GeneratedValue
    */
-  protected $elementId;
+  protected $id;
   
   /**
    *  @ORM\Column (type="integer") 
@@ -40,12 +40,12 @@ class Listelement {
     $this->listId = $listId;
   }
   
-  public function getElementId() {
-    return $this->elementId;
+  public function getId() {
+    return $this->id;
   }
   
-  public function setElementId($elementId) {
-    $this->elementId = $elementId;
+  public function setId($id) {
+    $this->id = $id;
   }
     
   public function getValue() {

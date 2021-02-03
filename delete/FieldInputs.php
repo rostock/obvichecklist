@@ -217,7 +217,7 @@ class FieldInputs {
     foreach ($elements as $element) {
       $option = [];
       $option[0] = $element->getlistId();
-      $option[1] = $element->getElementId();
+      $option[1] = $element->getId();
       $option[2] = $element->getValue();
       array_push($options,$option);
     }

@@ -56,7 +56,12 @@ class Fields {
   */
   protected $area;
   
-  public function __construct($id, $label, $description, $category, $type, $listId, $comments, $commentson, $area) {
+  public function __construct() {
+    
+  }
+  
+  
+  public function setParameters($id, $label, $description, $category, $type, $listId, $comments, $commentson, $area) {
     $this->id = $id;
     $this->label = $label;
     $this->description = $description;
@@ -104,39 +109,39 @@ class Fields {
     return $this->area;
   }
 
-  function setId($id): void {
+  public function setId($id): void {
     $this->id = $id;
   }
 
-  function setLabel($label): void {
+  public function setLabel($label): void {
     $this->label = $label;
   }
 
-  function setDescription($description): void {
+  public function setDescription($description): void {
     $this->description = $description;
   }
 
-  function setCategory($category): void {
+  public function setCategory($category): void {
     $this->category = $category;
   }
 
-  function setType($type): void {
+  public function setType($type): void {
     $this->type = $type;
   }
 
-  function setListId($listId): void {
+  public function setListId($listId): void {
     $this->listId = $listId;
   }
 
-  function setComments($comments): void {
+  public function setComments($comments): void {
     $this->comments = $comments;
   }
 
-  function setCommentson($commentson): void {
+  public function setCommentson($commentson): void {
     $this->commentson = $commentson;
   }
 
-  function setArea($area): void {
+  public function setArea($area): void {
     $this->area = $area;
   }
 }

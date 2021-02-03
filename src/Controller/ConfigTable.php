@@ -13,38 +13,32 @@ class ConfigTable {
   
   function __construct($type, $listId, $entityManager) {
     $this->type = $type;
-    $this->listId = $listId;
+    if(is_numeric($listId)) {
+      $this->listId = $listId;
+    }
     $this->entityManager = $entityManager;
     
     $this->buildTable();
   }
-
-  function buildTable() {
-    switch ($this->type) {
-      case "fields":
-        $this->buildFieldTable();
-      case "list":  
-        $this->buildListTable();
-    }
-  }
   
-  function buildFieldTable() {
+  function buildTable() {
     $conn = $this->entityManager->getConnection();
     $sm = $conn->getSchemaManager();
-    $columns = $sm->listTableColumns('fields');
+    
+    $columns = $sm->listTableColumns($this->type);
     $this->buildHeader($columns);
        
     $qb = $this->entityManager->createQueryBuilder();
     $qb->select('u')
-       ->from('Sources\Entities\Fields','u');
+       ->from('Sources\Entities\\' . ucfirst($this->type),'u');
+    if($this->listId) {
+      $qb->where('u.listId = :listId')
+         ->setParameter('listId', $this->listId);
+    }
     $results = $qb->getQuery()->getResult(Query::HYDRATE_ARRAY);
     $this->buildContent($results);
   }
   
-  function buildListTable() {
-    
-  }
-    
   function buildHeader($columns) {
     $this->header = [];
     if($columns) {
@@ -66,7 +60,7 @@ class ConfigTable {
   function getHTMLCode() {
     $html = '<button type="button" conf="new" class="btn btn-primary" data-toggle="modal" data-target="#confModal">
             <i class="bi bi-plus-square"></i>
-          </button></td></tr><table class="table"><thead><tr>';
+          </button></td></tr><table id="confTable" type="' . $this->type . '" class="table"><thead><tr>';
     
     foreach($this->header as $value) {
       $html = $html . '<th scope="col">' . $value . '</th>';
@@ -81,7 +75,7 @@ class ConfigTable {
         $i++;
       }
       $html = $html .'<td>'
-        . '<button type="button" conf="update" class="btn btn-primary" data-toggle="modal" data-target="#confModal">
+        . '<button type="button" conf="update" class="btn btn-primary btnOpenModal" data-toggle="modal" data-target="#confModal">
             <i class="bi bi-gear" data-toggle="modal" data-target="#confModal"></i>
           </button></td></tr>';
     }
@@ -105,7 +99,7 @@ class ConfigTable {
     foreach ($this->header as $input) {
       $html = $html . '<div class="form-group">
                         <label title="' . $input . '" for="">' . $input . ': </label>
-                        <input kind="text" type="text" class="form-control" id="' . $input . '" value="">
+                        <input kind="text" type="text" class="form-control modalInput" id="' . $input . '" value="">
                     </div>';
     }
              

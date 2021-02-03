@@ -21,7 +21,7 @@ class Options {
     
     foreach ($results as $result) {
       $value = [];
-      $value['elementId']  = $result->getElementId();
+      $value['elementId']  = $result->getId();
       $value['value'] = $result->getValue();
       array_push($this->options, $value);
     }

@@ -1,4 +1,8 @@
 <!doctype html>
+<?php
+require_once "bootstrap.php";
+require "vendor/autoload.php";
+?>
 <html lang="de">
   <head>
     <meta charset="utf-8">
@@ -28,6 +32,30 @@
           <div class="jumbotron">
             <p>Eingabefelder</p>
             <a class="btn btn-primary btn-lg" href="confDB.php?type=fields&list=null" role="button" title="Feld-Konfiguration">Konfigurieren</a>
+            <hr class="my-4">
+          </div>
+        </div>
+        <div class=""container">  
+          <div class="jumbotron">
+            <p>Listen</p>
+            <a class="btn btn-primary btn-lg" href="confDB.php?type=lists&list=null" role="button" title="Feld-Konfiguration">Konfigurieren</a>
+            <hr class="my-4">
+          </div>
+        </div>
+        <div class=""container">  
+          <div class="jumbotron">
+            <p>Listenelemente</p>
+            <?php
+            $qb = $entityManager->createQueryBuilder();
+            $qb->select('u')
+              ->from('Sources\Entities\Lists','u');
+            $results = $qb->getQuery()->getResult();
+            foreach ($results as $result) {
+              echo '<label for="list' . $result->getId() . '">' . $result->getValue() . ': </label>';
+              echo '<a id="' . $result->getId() . '" class="btn btn-primary btn-lg" href="confDB.php?type=listelement&list=' . $result->getId() . '" role="button" title="Feld-Konfiguration">Konfigurieren</a>';
+              echo '<br>';
+            }
+            ?>
             <hr class="my-4">
           </div>
         </div>

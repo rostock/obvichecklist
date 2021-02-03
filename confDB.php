@@ -1,5 +1,8 @@
 <?php
 require_once "bootstrap.php";
+
+use Sources\Controller\ConfigTable;
+
 ?>
 <!doctype html>
 <html lang="de">
@@ -29,10 +32,13 @@ require_once "bootstrap.php";
     </header>  
     <main>
     <?php
-      $table = new \Sources\Controller\ConfigTable($_GET['type'], $_GET['list'], $entityManager);
+      $table = new ConfigTable($_GET['type'], $_GET['list'], $entityManager);
       echo $table->getHTMLCode();
     ?>
     </main>
+    <div class="spinnerbox">
+      <div class="spinner"></div>
+    </div>
     <footer class="text-muted">
       <div class="container">
         <p class="float-right">

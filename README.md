@@ -23,3 +23,11 @@ Installation
 ---jquery-3.5.1
 ---jquery-ui-1.12.1.custom
 
+
+Datenbank Schema anlegen:
+
+vendor/bin/doctrine orm:schema-tool:create
+
+Datenbank Schema aktualisieren:
+
+vendor/bin/doctrine orm:schema-tool:update --force

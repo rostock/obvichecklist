@@ -89,7 +89,7 @@ function getValueContent($item, $entityManager) {
   if(isset($item->list) && isset($item->val) && $item->value == "") {
     //check if $item->val exists
     $queryBuilder = $entityManager->createQueryBuilder();
-    $queryBuilder->select('u.value, u.elementId')
+    $queryBuilder->select('u.value, u.id')
       ->from('Sources\Entities\Listelement',' u')
       ->where('u.listId = :id')
       ->andWhere('u.value = :val')
@@ -102,9 +102,9 @@ function getValueContent($item, $entityManager) {
       $tupel = new Listelement($item->list, $item->val);
       $entityManager->persist($tupel);
       $entityManager->flush();
-      return $tupel->getElementId();
+      return $tupel->getId();
     } else {
-      return $res[0]['elementId'];
+      return $res[0]['id'];
     }  
   }
   return $item->value;

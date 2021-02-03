@@ -13,7 +13,7 @@ class ListValue {
     $qb = $this->entityManager->createQueryBuilder();
     $qb->select('u.value')
        ->from('Sources\Entities\Listelement','u')
-       ->where('u.elementId = :kid')
+       ->where('u.id = :kid')
        ->setParameter('kid', $id);
     $results = $qb->getQuery()->getResult();
     foreach ($results as $result) {
