@@ -1,5 +1,9 @@
 # obvichecklist
 
+Sicherheitshinweis
+- Anwendung ist nur für eine netzwerkinterne Verwendung gedacht, d.h. den Anwendern ist der Gebrauch bekannt und die Nutzer sind vertrauensvoll.
+- Anwendung ist noch nicht gegen SQL-Injections und Co abgesichert.
+
 Installation
 
 -PHP - Bibliotheken

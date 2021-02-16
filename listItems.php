@@ -12,6 +12,7 @@ require_once 'src/Entities/Metadata.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="lib/bootstrap-4.5.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="images/icons/bootstrap-icons.css">
     <link rel="stylesheet"  href="lib/jquery-ui-1.12.1.custom/jquery-ui.css">
     <link rel="stylesheet" href="css/custom.css">
     <title>ÖBVI Checkliste - Liste</title>
@@ -26,14 +27,21 @@ require_once 'src/Entities/Metadata.php';
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="conf.php" title="Konfiguration"><i class="bi bi-gear"></i></a>
-          </div>     
+          </div>  
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" id="deleteBtn" title="Löschen"><i class="bi bi-trash"></i></a>
+          </div>  
         </div>
       </nav>
-    </header>  
+    </header> 
+    <div class="spinnerbox">
+      <div class="spinner"></div>
+    </div>  
     <main>  
       <table class="table">
         <thead>
           <tr>
+            <th></th>  
             <th scope="col">K-Nummer</th>
             <th scope="col">Auswertung</th>
             <th scope="col">Fehler (Gesamt/übernahmerelevant)</th>
@@ -59,6 +67,7 @@ require_once 'src/Entities/Metadata.php';
                 $auswertung = $query->getResult();
 
                 echo "<tr>";
+                  echo '<td><input type="checkbox" class="checker" id="' . $value['1'] . '" name="horns"></td>';
                   echo '<th scope="row"><a href="index.php?knummer=' . $value['1'] . '">' . $value['1'] . '</a></th>';
                   echo '<td>' . getListValue($auswertung[0]['value'], $entityManager) . '</td>';
                   echo '<td>' . getErrors($value['1'], $entityManager) . '</td>';
@@ -165,6 +174,7 @@ require_once 'src/Entities/Metadata.php';
     <script src="lib/jquery-3.5.1/jquery-3.5.1.min.js"></script>
     <script src="lib/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
     <script src="lib/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>
+     <script src="js/deleteItem.js"></script>
     
   </body>
 </html>

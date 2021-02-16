@@ -41,7 +41,7 @@ class Fields {
   protected $listId;
   
   /** 
-  * @ORM\Column(type="boolean")
+  * @ORM\Column(type="boolean", options={"default": 0})
   */
   protected $comments;
     
@@ -56,12 +56,17 @@ class Fields {
   */
   protected $area;
   
+  /** 
+  * @ORM\Column(type="boolean", options={"default": 1})
+  */
+  protected $savevalue;
+  
   public function __construct() {
     
   }
   
   
-  public function setParameters($id, $label, $description, $category, $type, $listId, $comments, $commentson, $area) {
+  public function setParameters($id, $label, $description, $category, $type, $listId, $comments, $commentson, $area, $savevalue) {
     $this->id = $id;
     $this->label = $label;
     $this->description = $description;
@@ -71,6 +76,7 @@ class Fields {
     $this->comments = $comments;
     $this->commentson = $commentson;
     $this->area = $area;
+    $this->savevalue = $savevalue;
   }
 
   function getId() {
@@ -140,8 +146,15 @@ class Fields {
   public function setCommentson($commentson): void {
     $this->commentson = $commentson;
   }
+  function getSavevalue() {
+    return $this->savevalue;
+  }
 
-  public function setArea($area): void {
+  function setSavevalue($savevalue): void {
+    $this->savevalue = $savevalue;
+  }
+
+    public function setArea($area): void {
     $this->area = $area;
   }
 }

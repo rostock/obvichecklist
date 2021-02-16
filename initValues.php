@@ -1,8 +1,6 @@
 <?php
 
 require_once "bootstrap.php";
-//require_once 'src/Entities/Listelement.php';
-//require_once 'src/Entities/Fields.php';
 
 use PhpOffice\PhpSpreadsheet\Reader\Xlsx;
 use Sources\Entities\Listelement;
@@ -35,13 +33,17 @@ for($row = 2; $row <= $highestRow; $row++ ) {
 }
 
 foreach($fields as $item) {
-  //$id, $label, $description, $category, $type, $listId, $comments, $commentson, $area
+  //$id, $label, $description, $category, $type, $listId, $comments, $commentson, $area, $savevalue
   $comment = FALSE;
   if($item[6] === "Ja") {
     $comment = TRUE;
   } 
+  $savevalue = FALSE;
+  if($item[9] === "Ja") {
+    $savevalue = TRUE;
+  } 
   $element = new Fields();
-  $element->setParameter($item[0], $item[1], $item[2], $item[3], $item[4], $item[5], $comment, $item[7], $item[8]);
+  $element->setParameters($item[0], $item[1], $item[2], $item[3], $item[4], $item[5], $comment, $item[7], $item[8], $savevalue);
   $entityManager->persist($element);
   $entityManager->flush();
 }
@@ -78,7 +80,9 @@ for($col = 1; $col <= $highestColumnIndex; $col++ ) {
 
 foreach($listElements as $item) {
   echo $item['listId'] . " " . $item['value'] . "<br>";
-  $element = new Listelement($item['listId'], $item['value']);
+  $listId = $item['listId'];
+  $value = $item['value']; 
+  $element = new Listelement($listId, $value);
   $entityManager->persist($element);
   $entityManager->flush();
 }

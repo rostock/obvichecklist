@@ -19,7 +19,7 @@ $('#createIssueBtn').click(function() {
       data: getData(),
     })
     .done(function( msg ) {
-      $('.spinnerbox').show();
+      $('.spinnerbox').hide();
       location.reload();
       console.log( msg );
     });

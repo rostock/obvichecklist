@@ -11,6 +11,10 @@ $knummer = null;
 if(isset($_GET['knummer'])) {
   $knummer = $_GET['knummer'];
 }
+$metadata = new MetadataInfo($knummer, $entityManager);
+$breadcrumbs = new Breadcrumbs($entityManager);
+$filter = new Filter($entityManager);
+$fields = new Fields($entityManager, $knummer);
 ?>
 <!doctype html>
 <html lang="de">
@@ -44,7 +48,9 @@ if(isset($_GET['knummer'])) {
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="conf.php" title="Konfiguration"><i class="bi bi-gear"></i></a>
           </div>  
-            
+           <?php
+              echo $fields->getHTMLCode('navbar');
+           ?>
         </div>
       </nav>
     </header>
@@ -56,7 +62,6 @@ if(isset($_GET['knummer'])) {
         <div class="col-md-12 order-md-1">
           <div class="alert alert-primary" role="alert">
               <?php
-                $metadata = new MetadataInfo($knummer, $entityManager);
                 echo $metadata->getHTMLCode();
               ?>
           </div>
@@ -67,7 +72,6 @@ if(isset($_GET['knummer'])) {
         <nav aria-label="...">
           <ul class="pagination pagination-lg justify-content-center">
             <?php
-              $breadcrumbs = new Breadcrumbs($entityManager);
               echo $breadcrumbs->getHTMLCode();
             ?>
           </ul>
@@ -76,7 +80,6 @@ if(isset($_GET['knummer'])) {
       <div class="container deactive" id="filter">
         <div class="col-md-12 order-md-1">
           <?php 
-            $filter = new Filter($entityManager);
             echo $filter->getCheckboxHTMLCode();
           ?>
         </div>
@@ -90,7 +93,6 @@ if(isset($_GET['knummer'])) {
                 <h4 id="sectionTitel" class="mb-3">Titel der unterschiedlichen Kategorien</h4>
               </span>
               <?php
-                $fields = new Fields($entityManager, $knummer);
                 echo $fields->getHTMLCode('main');
               ?>
               <nav aria-label="Wizard navigation">

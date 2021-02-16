@@ -26,13 +26,27 @@ class Listelement {
   */
   protected $value;
   
+  /** 
+  * @ORM\Column(type="boolean", options={"default": 1})
+  */
+  protected $active;
+  
   
   public function __construct($listId, $value) {
     $this->listId = $listId;
     $this->value = $value;
+    $this->active = TRUE;
   }
   
-  public function getlistId() {
+  function getActive() {
+    return $this->active;
+  }
+
+  function setActive($active): void {
+    $this->active = $active;
+  }
+
+    public function getlistId() {
     return $this->listId;
   }
   
