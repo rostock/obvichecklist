@@ -1,0 +1,12 @@
+{
+  "name": "tim/eingabe",
+  "require": {
+    "doctrine/orm": "*",
+    "phpoffice/phpspreadsheet": "*"
+  },
+  "autoload": {
+    "psr-4": {
+        "Sources\\": "src/"
+        }
+  }
+}
