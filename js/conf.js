@@ -20,9 +20,8 @@ $('#saveConfigBtn').click(function() {
     data: getConfData(),
   })
   .done(function( msg ) {
-    console.log("HI");
     $('.spinnerbox').show();
-    //location.reload();
+    location.reload();
     console.log( msg );
   });
 });
