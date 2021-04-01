@@ -47,6 +47,7 @@ if(in_array_R($knummer, $results)) {
 function updateItem($knummer, $item, $entityManager) {
   
   if($item->type == "autocomplete") {
+    echo "autocomplete<br>";
     $valueContent = getValueContent($item, $entityManager);
   } else {
     $valueContent = $item->value;
@@ -86,6 +87,7 @@ function updateAnmerkung($knummer, $item, $entityManager) {
  * Funktion rausnehmen und dafür die Klassen verwenden
  */
 function getValueContent($item, $entityManager) {
+  echo "getValueContent<br>";
   if(isset($item->list) && isset($item->val) && $item->value == "") {
     //check if $item->val exists
     $queryBuilder = $entityManager->createQueryBuilder();
@@ -97,15 +99,19 @@ function getValueContent($item, $entityManager) {
       ->setParameter('id', $item->list);
   
     $res = $queryBuilder->getQuery()->getResult();
-       
     if(!isset($res[0]['value'])) {
-      $tupel = new Listelement($item->list, $item->val);
+      $tupel = new Listelement();
+      $tupel->setListId($item->list);
+      $tupel->setValue($item->val);
+      $tupel->setActive(1);
       $entityManager->persist($tupel);
       $entityManager->flush();
+      
       return $tupel->getId();
+      
     } else {
       return $res[0]['id'];
-    }  
+    }
   }
   return $item->value;
 }

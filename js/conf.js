@@ -20,12 +20,12 @@ $('#saveConfigBtn').click(function() {
     data: getConfData(),
   })
   .done(function( msg ) {
+    console.log("HI");
     $('.spinnerbox').show();
-    location.reload();
+    //location.reload();
     console.log( msg );
   });
 });
-
 
 var getConfData = function() {
   var form_data = new FormData();
@@ -45,3 +45,8 @@ var getConfData = function() {
   form_data.append('entitytype', dataString);
   return form_data;
 }
+
+
+$('#confModal').on('hidden.bs.modal', function (e) {
+  $('.modalInput').val('');
+})

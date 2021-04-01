@@ -70,8 +70,8 @@ class ConfigTable {
     foreach($this->content as $tupel) {
       $html = $html .'<tr>';
       $i = 0;
-      foreach ($tupel as $value) {
-        $html = $html . '<td col="' . $this->header[$i]. '">' . $value . '</td>';
+      foreach ($tupel as $key => $value) {
+        $html = $html . '<td col="' . $key . '">' . $value . '</td>';
         $i++;
       }
       $html = $html .'<td>'
@@ -97,9 +97,13 @@ class ConfigTable {
             <div class="modal-body">';
      
     foreach ($this->header as $input) {
+      $disabled = '';
+      if($input == 'id') {
+        $disabled = 'disabled';
+      }
       $html = $html . '<div class="form-group">
                         <label title="' . $input . '" for="">' . $input . ': </label>
-                        <input kind="text" type="text" class="form-control modalInput" id="' . $input . '" value="">
+                        <input kind="text" type="text" class="form-control modalInput" id="' . $input . '" value="" ' . $disabled .'>
                     </div>';
     }
              

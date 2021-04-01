@@ -133,7 +133,7 @@ require_once 'src/Entities/Metadata.php';
                   ->andWhere('u.type = :type')
                   ->setParameter('id', $knummer)
                   ->setParameter('type', 'Aktualisierung')
-                  ->orderBy('u.datetime', 'ASC');
+                  ->orderBy('u.datetime', 'DESC');
 
                 $res = $queryBuilder->getQuery()->getResult();
 

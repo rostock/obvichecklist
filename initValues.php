@@ -82,8 +82,11 @@ foreach($listElements as $item) {
   echo $item['listId'] . " " . $item['value'] . "<br>";
   $listId = $item['listId'];
   $value = $item['value']; 
-  $element = new Listelement($listId, $value);
-  $entityManager->persist($element);
+  $tupel = new Listelement();
+  $tupel->setListId($listId);
+  $tupel->setValue($value);
+  $tupel->setActive(1);
+  $entityManager->persist($tupel);
   $entityManager->flush();
 }
 

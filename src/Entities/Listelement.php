@@ -32,11 +32,11 @@ class Listelement {
   protected $active;
   
   
-  public function __construct($listId, $value) {
-    $this->listId = $listId;
-    $this->value = $value;
-    $this->active = TRUE;
-  }
+//  public function __construct($listId, $value) {
+//    $this->listId = $listId;
+//    $this->value = $value;
+//    $this->active = TRUE;
+//  }
   
   function getActive() {
     return $this->active;
@@ -46,7 +46,7 @@ class Listelement {
     $this->active = $active;
   }
 
-    public function getlistId() {
+    public function getListId() {
     return $this->listId;
   }
   

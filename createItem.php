@@ -31,14 +31,6 @@ if(in_array_R($knummer->value,$results)) {
   createMetadata($knummer->value, 'Erstellung', $entityManager);
 }
 
-/*
- * Object of $val:
- *  id: $( this ).attr('id').replace("comment_", ""),
- *  type:$( this ).attr('kind'),
- *  list:$( this ).attr('list'),
- *  value:$( this ).attr('value'),
- *  val:$( this ).val()
- */
 function createItem($knummer, $item, $entityManager) {
   if($item->type == "autocomplete") {
     $valueContent = getValueContent($item, $entityManager);
@@ -81,8 +73,10 @@ function getValueContent($item, $entityManager) {
     $res = $queryBuilder->getQuery()->getResult();
        
     if(!isset($res[0]['value'])) {
-    
-      $tupel = new Listelement($item->list, $item->val);
+      $tupel = new Listelement();
+      $tupel->setListId($item->list);
+      $tupel->setValue($item->val);
+      $tupel->setActive(1);
       $entityManager->persist($tupel);
       $entityManager->flush();
       return $tupel->getId();
