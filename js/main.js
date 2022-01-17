@@ -63,9 +63,8 @@ $('li.btnNext, li.btnPrevious').click(function() {
 $('.selectBox').on('change', function() {
   
   var taIDs = $(this).attr('changeattr').split(',');
-  //var index = (parseInt($(this).children('option:selected').index()) + 1).toString();
+  // var index = (parseInt($(this).children('option:selected').index()) + 1).toString();
   var index = $(this).val();
-  
   if(taIDs.includes(index)) {
     //make the textare visible
     $(this).closest('.inputField').find('textarea').css('display','');

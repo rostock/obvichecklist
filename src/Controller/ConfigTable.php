@@ -40,15 +40,10 @@ class ConfigTable {
   }
   
   function buildHeader($columns) {
-    unset($this->header);
     $this->header = [];
     if($columns) {
-      foreach ($columns as $key => $col) {
-        if(method_exists($col,'getName')) {
-          array_push($this->header, $col->getName());
-        } else {
-          array_push($this->header, $key);
-        }
+      foreach ($columns as $col) {
+        array_push($this->header, $col->getName());
       }
     }
   }
@@ -59,7 +54,6 @@ class ConfigTable {
       foreach ($results as $result) {
         array_push($this->content, $result);
       }
-      $this->buildheader($results[0]);
     }
   }
   
