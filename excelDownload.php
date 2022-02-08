@@ -71,11 +71,7 @@ foreach ($knummern as $key => $value) {
   $row++;
 }
 
-
-
-
-
 // Exceldatei anlegen und speichern
 $writer = new Xlsx($spreadsheet);
-$writer->save('create-xlsx-files-with-header-and-footer.xlsx');
+$writer->save('statistik.xlsx');
 ?>
