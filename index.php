@@ -47,7 +47,7 @@ $fields = new Fields($entityManager, $knummer);
           </div>
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="conf.php" title="Konfiguration"><i class="bi bi-gear"></i></a>
-          </div>  
+          </div>
            <?php
               echo $fields->getHTMLCode('navbar');
            ?>

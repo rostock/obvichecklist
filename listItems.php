@@ -27,7 +27,10 @@ require_once 'src/Entities/Metadata.php';
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="conf.php" title="Konfiguration"><i class="bi bi-gear"></i></a>
-          </div>  
+          </div> 
+		  <div class="navbar-nav">
+            <a href="/excelDownload.php"  class="nav-item nav-link" id="exportItems" title="Export" download><i class="bi bi-cloud-download"></i></a>
+          </div>  		  
           <div class="navbar-nav">
             <a class="nav-item nav-link" id="deleteBtn" title="Löschen"><i class="bi bi-trash"></i></a>
           </div>  
@@ -59,16 +62,16 @@ require_once 'src/Entities/Metadata.php';
               foreach ($results as $key => $value) {
                 //Vermessungsstelle ermitteln
                 $query = $entityManager->createQuery('SELECT u.value FROM Sources\Entities\Inhalt u where u.knummer = :id and u.fieldId = 2' );
-                $query->setParameter('id', $value["1"]);
+                $query->setParameter('id', $value[1]);
                 $vermessungsstelle = $query->getResult();
                 //Auswertung
                 $query = $entityManager->createQuery('SELECT u.value FROM Sources\Entities\Inhalt u where u.knummer = :id and u.fieldId = 65' );
-                $query->setParameter('id', $value["1"]);
+                $query->setParameter('id', $value[1]);
                 $auswertung = $query->getResult();
 
                 echo "<tr>";
-                  echo '<td><input type="checkbox" class="checker" id="' . $value['1'] . '" name="horns"></td>';
-                  echo '<th scope="row"><a href="index.php?knummer=' . $value['1'] . '">' . $value['1'] . '</a></th>';
+                  echo '<td><input type="checkbox" class="checker" id="' . $value[1] . '" name="horns"></td>';
+                  echo '<th scope="row"><a href="index.php?knummer=' . $value[1] . '">' . $value[1] . '</a></th>';
                   echo '<td>' . getListValue($auswertung[0]['value'], $entityManager) . '</td>';
                   echo '<td>' . getErrors($value['1'], $entityManager) . '</td>';
                   echo '<td>' . getListvalue($vermessungsstelle[0]['value'], $entityManager) . '</td>';
