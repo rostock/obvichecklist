@@ -29,7 +29,7 @@ require_once 'src/Entities/Metadata.php';
             <a class="nav-item nav-link" href="conf.php" title="Konfiguration"><i class="bi bi-gear"></i></a>
           </div> 
 		  <div class="navbar-nav">
-            <a href="/excelDownload.php"  class="nav-item nav-link" id="exportItems" title="Export" download><i class="bi bi-cloud-download"></i></a>
+            <a href="excelDownload.php"  class="nav-item nav-link" id="exportItems" title="Export"><i class="bi bi-cloud-download"></i></a>
           </div>  		  
           <div class="navbar-nav">
             <a class="nav-item nav-link" id="deleteBtn" title="Löschen"><i class="bi bi-trash"></i></a>

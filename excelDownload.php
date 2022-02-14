@@ -71,7 +71,15 @@ foreach ($knummern as $key => $value) {
   $row++;
 }
 
+//ob_clean, damit es keine Probleme mit bereits erzeugten Headern gibt
+ob_clean();
 // Exceldatei anlegen und speichern
 $writer = new Xlsx($spreadsheet);
-$writer->save('statistik.xlsx');
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment; filename="statistik.xlsx"');
+//$writer->save('statistik.xlsx');
+$writer->save('php://output');
+
+
+
 ?>
